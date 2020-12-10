@@ -1,0 +1,29 @@
+<%- include ("../includes/adminHeader.ejs") %>  
+<h2 class="page-title mt-3">Pages</h2>
+<a href="/admin/pages/add-page" class="btn btn-primary mb-3">Add a new page</a>
+
+<table class="table table-stripped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <% pages.forEach((page) => { %>
+        <tr>
+            <td><%= page.title %></td>
+            <td><a href="/admin/pages/edit-page/<%= page.title %>">Edit</a></td>
+            <% if (page.title === 'Home') { %>
+            <td></td>
+            <% } else { %>
+            <td><a class="confirmDeletion" href="/admin/pages/delete-page/<%= page.id %>">Delete</a></td>
+            <% } %>
+        </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+<%- include ("../includes/adminFooter.ejs") %>

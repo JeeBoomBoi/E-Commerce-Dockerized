@@ -1,0 +1,31 @@
+{
+  "name": "e-commerce",
+  "version": "1.0.0",
+  "description": "E-commerce website",
+  "main": "index.js",
+  "scripts": {
+    "serve:local": "nodemon index.js",
+    "lint:fix": "eslint --fix ./*.js",
+    "test": "mocha tests/*.js --exit",
+    "start": "node index.js"
+  },
+  "author": "Jeethendra",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "express-messages": "^1.0.1",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.7.0",
+    "fs-extra": "^9.0.1",
+    "mkdirp": "^1.0.4",
+    "mongoose": "^5.10.18",
+    "resize-img": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}

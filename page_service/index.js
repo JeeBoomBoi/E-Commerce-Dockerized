@@ -39,6 +39,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+// global variable for pages
+const Pages = require('./models/page.js')
+
+Pages.find({}).then((pages) => {
+  app.locals.pages = pages
+}).catch((err) => { console.log(err) })
+
 // express-session
 app.use(session({
   secret: 'keyboard cat',

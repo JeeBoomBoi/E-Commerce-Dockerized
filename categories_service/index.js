@@ -66,8 +66,8 @@ const adminCategories = require('./routes/admin_categories.js')
 app.use('/admin/categories', adminCategories)
 app.use('/', pages)
 
-app.listen(3000, () => {
-  console.log('Server running at port 3000')
+app.listen(3001, () => {
+  console.log('Server running at port 3001')
 })
 
 module.exports = app

@@ -66,8 +66,8 @@ const adminProducts = require('./routes/admin_products.js')
 app.use('/admin/products', adminProducts)
 app.use('/', pages)
 
-app.listen(3000, () => {
-  console.log('Server running at port 3000')
+app.listen(3002, () => {
+  console.log('Server running at port 3002')
 })
 
 module.exports = app

@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const fileUpload = require('express-fileupload')
 
+const port = process.env.PORT || 3000
+
 // Make mongoose use find one and update
 mongoose.set('useFindAndModify', false)
 
@@ -39,11 +41,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-// global variable for pages
-const Pages = require('./models/page.js')
+// global variable for categories
+const Category = require('./models/product.js')
 
-Pages.find({}).then((pages) => {
-  app.locals.pages = pages
+Category.find({}).then((categories) => {
+  app.locals.categories = categories
 }).catch((err) => { console.log(err) })
 
 // express-session
@@ -62,12 +64,16 @@ app.use(function (req, res, next) {
 // Adding routes
 const pages = require('./routes/pages.js')
 const adminPages = require('./routes/admin_pages.js')
+// const adminCategories = require('./routes/admin_categories.js')
+// const adminProducts = require('./routes/admin_products.js')
 
 app.use('/admin/pages', adminPages)
+// app.use('/admin/categories', adminCategories)
+// app.use('/admin/products', adminProducts)
 app.use('/', pages)
 
-app.listen(3000, () => {
-  console.log('Server running at port 3000')
+app.listen(port, () => {
+  console.log(`Server running at port ${port}`)
 })
 
 module.exports = app

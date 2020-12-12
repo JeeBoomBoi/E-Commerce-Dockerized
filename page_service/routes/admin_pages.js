@@ -13,11 +13,11 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
   Get pages index
 */
 router.get('/', (req, res) => {
-  Page.find({}).sort({ sorting: 1 }).exec((_err, pages) => {
+  Page.find({}).sort({sorting: 1}).exec().then((pages)=>{
     res.render('admin/pages', {
-      pages: pages
-    })
-  })
+        pages:pages
+    });
+}).catch((err)=>{console.log(err)});
 })
 
 /*

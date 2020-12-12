@@ -22,6 +22,7 @@
     "mkdirp": "^1.0.4",
     "mongoose": "^5.10.18",
     "node-fetch": "^2.6.1",
+    "request": "^2.88.2",
     "resize-img": "^2.0.0"
   },
   "devDependencies": {

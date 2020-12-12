@@ -44,7 +44,7 @@ app.use(bodyParser.json())
 // global variable for categories
 const Category = require('./models/product.js')
 
-Category.find({}).then((categories) => {
+Category.find().then((categories) => {
   app.locals.categories = categories
 }).catch((err) => { console.log(err) })
 

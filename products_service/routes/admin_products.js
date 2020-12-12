@@ -4,7 +4,6 @@ const bodyParser = require('body-parser')
 const { check, validationResult } = require('express-validator')
 const mkdirp = require('mkdirp')
 const fs = require('fs-extra')
-const resizeImg = require('resize-img')
 
 // Get page model
 const Product = require('../models/product')
@@ -303,49 +302,6 @@ router.post('/edit-product/:id', urlencodedParser, [
       })
     }
   }).catch((err) => { console.log(err) })
-})
-
-/*
- * POST product gallery
- */
-router.post('/product-gallery/:id', function (req, res) {
-  const productImage = req.files.file
-  const id = req.params.id
-  const path = 'public/images/product_imgs/' + id + '/gallery/' + req.files.file.name
-  const thumbsPath = 'public/images/product_imgs/' + id + '/gallery/thumbs/' + req.files.file.name
-
-  productImage.mv(path, function (err) {
-    if (err) { console.log(err) }
-
-    resizeImg(fs.readFileSync(path), { width: 100, height: 100 }).then(function (buf) {
-      fs.writeFileSync(thumbsPath, buf)
-    })
-  })
-
-  res.sendStatus(200)
-})
-
-/*
-* GET delete image
-*/
-router.get('/delete-image/:image', function (req, res) {
-  const originalImage = 'public/images/product_imgs/' + req.query.id + '/gallery/' + req.params.image
-  const thumbImage = 'public/images/product_imgs/' + req.query.id + '/gallery/thumbs/' + req.params.image
-
-  fs.remove(originalImage, function (err) {
-    if (err) {
-      console.log(err)
-    } else {
-      fs.remove(thumbImage, function (err) {
-        if (err) {
-          console.log(err)
-        } else {
-          req.flash('success', 'Image deleted!')
-          res.redirect('/admin/products/edit-product/' + req.query.id)
-        }
-      })
-    }
-  })
 })
 
 /*

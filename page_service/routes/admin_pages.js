@@ -9,6 +9,12 @@ const Page = require('../models/page')
 // Create encodedPareser for validation
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
+const updateGlobalPages = (req) =>{
+  PageModel.find({}).sort({sorting: 1}).exec().then((pages)=>{
+      req.app.locals.pages = pages;
+    }).catch((err)=>{console.log(err)});
+}
+
 /*
   Get pages index
 */

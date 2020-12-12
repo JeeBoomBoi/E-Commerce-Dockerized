@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const fileUpload = require('express-fileupload')
+const port = 3002
 
 // Make mongoose use find one and update
 mongoose.set('useFindAndModify', false)
@@ -66,8 +67,8 @@ const adminProducts = require('./routes/admin_products.js')
 app.use('/admin/products', adminProducts)
 app.use('/', pages)
 
-app.listen(3002, () => {
-  console.log('Server running at port 3002')
+app.listen(port, () => {
+  console.log(`Server running at port ${port}`)
 })
 
 module.exports = app

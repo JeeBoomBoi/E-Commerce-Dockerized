@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const fileUpload = require('express-fileupload')
 
-const port = process.env.PORT || 3000
+const port = 3000
 
 // Make mongoose use find one and update
 mongoose.set('useFindAndModify', false)
